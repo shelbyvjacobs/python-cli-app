@@ -40,8 +40,8 @@ class ContactBook:
         self.menu()
     def search(self):
         print("\nSEARCH CONTACTS")
-        search = input("\nEnter their last name: ")
-        result = Contact.select().where(Contact.last_name.contains(search)).get()
+        search = input("\nEnter their first name: ")
+        result = Contact.select().where(Contact.first_name.contains(search)).get()
         print(f"\n{result.first_name} {result.last_name}\n{result.phone_number}\n")
         response = input("Return to the main menu: M\nExit contact book: Q\n")
         if response == "M":
