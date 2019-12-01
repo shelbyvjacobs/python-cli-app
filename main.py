@@ -1,6 +1,6 @@
 from peewee import *
 
-db = PostgresqlDatabase('cli_app', user='postgres', password='',
+db = PostgresqlDatabase('contacts', user='postgres', password='',
                         host='localhost', port=5432)
 db.connect()
 
@@ -8,19 +8,24 @@ class BaseModel(Model):
     class Meta:
         database = db
 
-class FlashCard(BaseModel):
-    question = CharField()
-    answer = CharField()
-    number_correct = PositiveIntegerField()
-    number_incorrect = PositiveIntegerField()
+class Contact(BaseModel):
+    first_name = CharField()
+    last_name = CharField()
+    phone_number = CharField()
 
-db.create_tables([FlashCard])
+db.create_tables([Contact])
 
-card1 = FlashCard(question='What is your name?', answer='Shelby')
-card1.save()
-card2 = FlashCard(question='What is your quest?', answer='To find the Holy Grail')
-card2.save()
-card3 = FlashCard(question='What is the airspeed velocity of an unladen swallow?', answer='11 meters per second')
-card3.save()
+print("Hello! Welcome to your contact book!")
 
+class ContactBook:
+    def add(self):
+        print("Fill in these fields to create a new contact.")
+        first_name = input("First Name: ")
+        last_name = input("Last Name: ")
+        phone_number = input("Phone Number: ")
+        new_contact = Contact(first_name = first_name, last_name = last_name, phone_number = phone_number)
+        print("Your contact has been saved!")
+        new_contact.save()
 
+contact_book = ContactBook()
+contact_book.add()
