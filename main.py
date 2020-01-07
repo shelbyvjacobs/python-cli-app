@@ -51,6 +51,13 @@ class ContactBook:
         for all_contacts in Contact.select():
             print(f"\n{all_contacts.first_name} {all_contacts.last_name}\nPhone Number: {all_contacts.phone_number}")
         self.navigate()
+    def edit(self):
+        edit_response = input("/nWould you like to edit this contact?/nYes: Y/nNo: N")
+        if edit_response == "Y":
+            # ask them to search contacts; display the contact
+            # ask them to specify what field they would like to change, then what they would like to change it to
+            # select the contact, and update the field to the new value
+            # what if there are multiple results for one search?
     def navigate(self):
         response = input("\nReturn to the main menu: M\nExit contact book: Q\n")
         if response == "M":
