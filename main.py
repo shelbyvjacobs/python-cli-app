@@ -45,12 +45,22 @@ class ContactBook:
         search = input("\nEnter their first name: ")
         result = Contact.select().where(Contact.first_name.contains(search)).get()
         print(f"\n{result.first_name} {result.last_name}\n{result.phone_number}\n")
+        # Add option to delete this contact here
+        # what if there are multiple contacts returned by the search? What if there are none?
         self.navigate()
     def view(self):
         print("\nCONTACTS")
         for all_contacts in Contact.select():
             print(f"\n{all_contacts.first_name} {all_contacts.last_name}\nPhone Number: {all_contacts.phone_number}")
         self.navigate()
+    def delete(self):
+        print("\nDELETE CONTACTS")
+        # make sure the correct contact is selected (the same one from the search)
+        input("\Is this the contact you wish to delete? This action can't be undone.\nYes: Y\nNo: N")
+        # If no, display a message that the contact was NOT deleted and return to the list of all contacts (view).
+        # If yes, display a message that the contact was successfully deleted 
+        # .remove method?
+        # return to the list of all contacts (view).
     def navigate(self):
         response = input("\nReturn to the main menu: M\nExit contact book: Q\n")
         if response == "M":
