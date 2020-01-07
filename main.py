@@ -45,13 +45,13 @@ class ContactBook:
         search = input("\nEnter their first name: ")
         result = Contact.select().where(Contact.first_name.contains(search)).get()
         print(f"\n{result.first_name} {result.last_name}\n{result.phone_number}\n")
-        self.navigation()
+        self.navigate()
     def view(self):
         print("\nCONTACTS")
         for all_contacts in Contact.select():
             print(f"\n{all_contacts.first_name} {all_contacts.last_name}\nPhone Number: {all_contacts.phone_number}")
-        self.navigation()
-    def navigation(self):
+        self.navigate()
+    def navigate(self):
         response = input("\nReturn to the main menu: M\nExit contact book: Q\n")
         if response == "M":
             self.menu()
@@ -59,7 +59,7 @@ class ContactBook:
             return
         else:
             print("\n\nSorry, that's not an option. Please enter a valid option.")
-            self.navigation()
+            self.navigate()
 
 
 contact_book = ContactBook()
